@@ -1,14 +1,18 @@
 from time import time
 
-def typing_tester():
-    # sample text
-    sample_text = 'Today is sunny!'
 
-    # Start timer 
-    start_time = time()
-    # get user text
-    user_input = input("Type the following text: "+ sample_text + '\n')
+
+def typing_tester(user_input, sample_text, start_time):
+    # sample text
+    
     end_time = time()
+    
+    sample_text = sample_text
+
+    
+    
+    # get user text
+    user_input = user_input
 
     user_speed = len(sample_text) / (end_time - start_time)
 
@@ -17,6 +21,9 @@ def typing_tester():
     # Debug Index error
     while len(user_input) < len(sample_text):
         user_input += ' '
+
+    if len(user_input) > len(sample_text):
+        user_input = user_input[:len(sample_text)]
 
     for i in range(len(sample_text)):
         if sample_text[i] == user_input[i]:
@@ -27,4 +34,3 @@ def typing_tester():
     print(f'Typing speed {user_speed}  characters per seconds')
     print(f'Accuracy: {accuracy}')
 
-typing_tester()
