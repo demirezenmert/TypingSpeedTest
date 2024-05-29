@@ -22,15 +22,14 @@ def typing_tester(user_input, sample_text, start_time):
     while len(user_input) < len(sample_text):
         user_input += ' '
 
-    if len(user_input) > len(sample_text):
-        user_input = user_input[:len(sample_text)]
+    
 
     for i in range(len(sample_text)):
         if sample_text[i] == user_input[i]:
             accuracy += 1
 
     accuracy = accuracy / len(sample_text) * 100
-
+    return accuracy
     print(f'Typing speed {user_speed}  characters per seconds')
     print(f'Accuracy: {accuracy}')
 
