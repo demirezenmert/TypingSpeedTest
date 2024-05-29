@@ -48,4 +48,3 @@ class GAMEOVER:
         
 
 
-game = GAMEOVER()
