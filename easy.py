@@ -8,7 +8,10 @@ from tkinter import messagebox
 import random
 from gameOver import GAMEOVER
 
-TIME_INTERVAL = 10
+EASY_TIME_INTERVAL = 90
+MEDIUM_TIME_INTERVAL = 60
+HARD_TIME_INTERVAL = 30
+
 
 class EASY:
 
