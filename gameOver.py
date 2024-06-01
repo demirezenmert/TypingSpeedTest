@@ -1,9 +1,11 @@
 from tkinter import * 
 from tkinter.ttk import *
+import data
 
 class GAMEOVER:
 
-    def __init__(self) -> None:
+    def __init__(self, level) -> None:
+        self.level = level
         self.gameOverWindow = Toplevel()
         self.gameOverWindow.geometry('600x400')
         self.gameOverWindow.config(padx=50,pady=50)
@@ -39,12 +41,9 @@ class GAMEOVER:
         self.gameOverWindow.destroy()
     
     def readScores(self):
-        with open('scores/playerScore', 'r') as f:
-            self.playerScore = int(f.read())
-        with open('scores/highScore', 'r') as f:
-            self.highScore = int(f.read())
-        if self.playerScore > self.highScore :
-            self.highScore = self.playerScore
+        self.highScore, self.playerScore = data.read_scores(self.level)
+
+       
         
 
 

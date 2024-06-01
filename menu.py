@@ -34,10 +34,10 @@ class MENU:
         self.window.mainloop()
 
     def easy_window(self):
-        easy = GAME(EASY_TIME_INTERVAL, words.easy)
+        easy = GAME(EASY_TIME_INTERVAL, words.easy, 'e')
     def medium_window(self):
-        medium = GAME(MEDIUM_TIME_INTERVAL, words.medium)
+        medium = GAME(MEDIUM_TIME_INTERVAL, words.medium, 'm')
     def hard_window(self):
-        hard = GAME(HARD_TIME_INTERVAL, words.hard)
+        hard = GAME(HARD_TIME_INTERVAL, words.hard, 'h')
 
 menu = MENU()

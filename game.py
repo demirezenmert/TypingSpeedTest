@@ -6,7 +6,7 @@ from time import time
 from tkinter import messagebox
 import random
 from gameOver import GAMEOVER
-
+import data
 
 
 
@@ -14,8 +14,9 @@ from gameOver import GAMEOVER
 
 class GAME:
 
-    def __init__(self, level_time, level_words) -> None:
+    def __init__(self, level_time, level_words, level) -> None:
         # Windows Setup
+        self.level = level
         self.level_time = level_time
         self.level_words = level_words
         self.topWindow = Toplevel()
@@ -73,7 +74,7 @@ class GAME:
             # messagebox.showinfo("Time's Up", "Game Over!")
             self.save_score()
             self.topWindow.destroy()
-            gm = GAMEOVER()
+            gm = GAMEOVER(self.level)
         
     def increase_score(self):
         if self.accuracy > 80 : 
@@ -99,7 +100,8 @@ class GAME:
         self.topWindow.bind("<Return>", lambda event: self.check_answer(self.text_entry.get(), self.sample_word_text, start_time))
 
     def save_score(self):
-        with open('scores/playerScore', 'w') as file:
-            # print('SCORE'+str(self.score))
-            file.write(str(self.score))
+        
+        data.update_scores(self.score, self.level)
+        
+        
 
