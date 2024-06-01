@@ -1,6 +1,11 @@
 from tkinter import *
 from tkinter.ttk import *
-from easy import EASY
+from game import GAME
+import words
+
+EASY_TIME_INTERVAL = 90
+MEDIUM_TIME_INTERVAL = 60
+HARD_TIME_INTERVAL = 30
 
 class MENU:
 
@@ -18,10 +23,10 @@ class MENU:
         easy_button = Button(text="Easy", command=self.easy_window)
         easy_button.grid(row=3, column=1)
         
-        medium_button = Button(text="Medium", command=self.easy_window)
+        medium_button = Button(text="Medium", command=self.medium_window)
         medium_button.grid(row=3, column=2)
         
-        hard_button = Button(text="Hard", command=self.easy_window)
+        hard_button = Button(text="Hard", command=self.hard_window)
         hard_button.grid(row=3, column=3)
 
 
@@ -29,6 +34,10 @@ class MENU:
         self.window.mainloop()
 
     def easy_window(self):
-        easy = EASY()
+        easy = GAME(EASY_TIME_INTERVAL, words.easy)
+    def medium_window(self):
+        medium = GAME(MEDIUM_TIME_INTERVAL, words.medium)
+    def hard_window(self):
+        hard = GAME(HARD_TIME_INTERVAL, words.hard)
 
 menu = MENU()

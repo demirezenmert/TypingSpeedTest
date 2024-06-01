@@ -3,26 +3,27 @@ from tkinter import *
 from tkinter.ttk import *
 from main import typing_tester
 from time import time
-from words import easy
 from tkinter import messagebox
 import random
 from gameOver import GAMEOVER
 
-EASY_TIME_INTERVAL = 90
-MEDIUM_TIME_INTERVAL = 60
-HARD_TIME_INTERVAL = 30
 
 
-class EASY:
 
-    def __init__(self) -> None:
+
+
+class GAME:
+
+    def __init__(self, level_time, level_words) -> None:
         # Windows Setup
+        self.level_time = level_time
+        self.level_words = level_words
         self.topWindow = Toplevel()
         self.topWindow.geometry('600x400')
         self.topWindow.config(padx=50,pady=50)
         self.topWindow.title('Typing Speed Tester')
         self.topWindow.resizable(False,False)
-        self.timer = Label(self.topWindow, text= f'Time: {TIME_INTERVAL}', font=('arial',20,'bold'))
+        self.timer = Label(self.topWindow, text= f'Time: {level_time}', font=('arial',20,'bold'))
         self.timer.grid(column=1,row=0)
         self.sample_word = Label(self.topWindow, text='', font=('arial',20,'bold'))
         self.sample_word.grid(column=1,row=1,pady=8)
@@ -41,11 +42,11 @@ class EASY:
         self.score_label.grid(row=5,column=1, pady=5)
 
         self.message = Label(self.topWindow, text="Click the START button to start. Type in the word and hit Enter. \n" 
-                             "\t\tYou'll have 90 seconds", font=('Courier', 12, 'bold'),
+                             f"\t\tYou'll have {level_time} seconds", font=('Courier', 12, 'bold'),
                              wraplength=500)
         self.message.grid(row=4, column=1, pady=30)
         
-        self.sample_word_text = random.choice(easy)
+        self.sample_word_text = random.choice(self.level_words)
         self.score = 0
         self.accuracy = 0
         self.topWindow.mainloop()
@@ -59,7 +60,7 @@ class EASY:
         self.message.destroy()
         self.score_label.config(text=f'Your Score: {self.score}')
         self.text_entry.config(state=NORMAL)
-        self.counter(TIME_INTERVAL)
+        self.counter(self.level_time)
         self.show_text()
         
     def counter(self, count):
@@ -91,7 +92,7 @@ class EASY:
         self.show_text()
     def show_text(self):
         self.text_entry.delete(0, 'end')
-        self.sample_word_text = random.choice(easy)
+        self.sample_word_text = random.choice(self.level_words)
         self.sample_word.config(text=self.sample_word_text)
         self.text_entry.focus()
         start_time = time()
